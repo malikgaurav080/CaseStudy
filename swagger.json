@@ -1,0 +1,128 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Users API",
+    "description": "Users API Microservice architecture",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:5001",
+  "basePath": "/user",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "For generating a jwt token to get the profile",
+        "responses": {
+          "200": {
+            "description": "LoggedIn Successfully",
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        }
+      }
+    },
+    "/signup": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Signup for a new User",
+        "responses": {
+          "200": {
+            "description": "User Created Successfully",
+            "schema": {
+              "$ref": "#/definitions/signup"
+            }
+          }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get the profile of the user",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/signup"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "signup": {
+      "required": [
+        "username",
+        "password",
+        "email"
+      ],
+      "properties": {
+        "username": {
+          "type": "String",
+          "required": true
+        },
+        "password": {
+          "type": "String",
+          "required": true
+        },
+        "email": {
+          "type": "String",
+          "required": true
+        }
+      },
+      "example": {
+        "userName": "Gaurav",
+        "email": "malikgaurav080@gmail.com",
+        "password": "11223344"
+      }
+
+    },
+    "Login": {
+      "required": [
+        "password",
+        "email"
+      ],
+      "properties": {     
+        "password": {
+          "type": "String",
+          "required": true
+        },
+        "email": {
+          "type": "String",
+          "required": true
+        }
+      },
+      "example": {
+        "email": "malikgaurav080@gmail.com",
+        "password": "11223344"
+      }
+    }
+  }
+}
